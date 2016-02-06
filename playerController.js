@@ -46,9 +46,7 @@ back.x -= 0.4;
 
 //debug raycast 
 var jumpLine : float = GetComponent.<Collider>().bounds.size.y/2 + 0.2;
-Debug.DrawRay(middle, Vector3(0,-jumpLine, 0), Color.red);
-Debug.DrawRay(front, Vector3(0,-jumpLine, 0), Color.red);
-Debug.DrawRay(back, Vector3(0,-jumpLine, 0), Color.red);
+
 
 if(Physics.Raycast(front, Vector3.down, jumpLine) || Physics.Raycast(middle, Vector3.down, jumpLine) || Physics.Raycast(back, Vector3.down, jumpLine)){
 return true;
