@@ -54,3 +54,11 @@ return true;
 }
 return false;
 }
+
+function OnTriggerStay(other:Collider){
+             
+             if(other.gameObject.tag == "platform"){
+             transform.parent = other.transform;
+ 
+         }
+     }

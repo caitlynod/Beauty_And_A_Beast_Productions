@@ -1,7 +1,9 @@
 ﻿var anim: Animation;
+var target;
 
 function Start() {
 	anim = GetComponent.<Animation>();
+	target = GameObject.Find("Player").GetComponent(playerController);
 }
 
 // Make the character fade between an idle and a run animation 
@@ -13,9 +15,12 @@ function Update () {
 	anim.CrossFade("Run Owl");
 	}
 	}else if(Input.GetButton("Jump")){
-	anim.CrossFade("Jump Up Owl");
+	anim.CrossFade("Fall Owl");
 	}else{
-	anim.CrossFade("Idle Owl");
+	anim.CrossFade("Idle 2 Owl");
+	}
+	if(!target.isGrounded()){
+	anim.CrossFade("Fall Owl");
 	}
 		
 }
