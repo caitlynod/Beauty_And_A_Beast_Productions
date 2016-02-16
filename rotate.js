@@ -22,7 +22,7 @@ function Update() {
 	var rotateDelta : float = rotate*Time.deltaTime;
 	//move the object 10 units per second vs 10 units per frame
 	
-	transform.Rotate(rotateDelta, 0, 0);
+	transform.Rotate(rotateDelta, 0, 3);
 }
 
 
