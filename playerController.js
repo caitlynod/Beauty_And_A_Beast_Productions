@@ -4,6 +4,8 @@ public var speed : float;
 public var jumpHeight : float;
 public var gravity : float;
 private var targetRotation : int;
+private var jumpCount: int = 0;
+private var doubleJump : boolean = false;
 
 //Disable Gravity
 GetComponent.<Rigidbody>().useGravity = false;
@@ -15,6 +17,10 @@ transform.position.z = 0;
 GetComponent.<Rigidbody>().AddForce(new Vector3(0, -gravity*GetComponent.<Rigidbody>().mass, 0));
 //Handle Horz Movement
 GetComponent.<Rigidbody>().velocity.x = speed * Input.GetAxis("Horizontal");
+if(Input.GetKey(KeyCode.LeftShift)){
+GetComponent.<Rigidbody>().velocity.x = speed * Input.GetAxis("Horizontal")*2;
+
+}
 if(GetComponent.<Rigidbody>().velocity.x < 0){
 //if moving towards left
 		targetRotation = 180; //set char to left
@@ -23,17 +29,21 @@ if(GetComponent.<Rigidbody>().velocity.x < 0){
 		targetRotation  = 0; //set char to right
 	}
 	transform.eulerAngles.y -= (transform.eulerAngles.y-targetRotation)/5;
-
-
-
-	//handle jump
-	if(Input.GetButton("Jump") && isGrounded()){
-		GetComponent.<Rigidbody>().velocity.y = jumpHeight;
-	}
-	if(Input.GetButton("Jump") && !isGrounded()){
-		GetComponent.<Rigidbody>().velocity.y = jumpHeight;
-		}
+if(isGrounded()){
+jumpCount = 0;
+}
+//handle jump
+if(Input.GetButton("Jump")){
+if(isGrounded()){
+GetComponent.<Rigidbody>().velocity.y = jumpHeight;
+jumpCount++;
+doubleJump = false;
+}else if(jumpCount < 3 && !isGrounded()){
+doubleJump = true;
+GetComponent.<Rigidbody>().velocity.y = jumpHeight +2;
+}
 	
+}
 }
 //run a check to see if player is on ground
 function isGrounded(){
@@ -56,9 +66,13 @@ return false;
 }
 
 function OnTriggerStay(other:Collider){
-             
-             if(other.gameObject.tag == "platform"){
-             transform.parent = other.transform;
- 
-         }
-     }
+if(other.gameObject.tag == "platform"){
+transform.parent = other.transform;
+}
+}
+     
+function OnTriggerExit(other:Collider){
+if(other.gameObject.tag == "platform"){
+transform.parent = null;
+}
+} 
