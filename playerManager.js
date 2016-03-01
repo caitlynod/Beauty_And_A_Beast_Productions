@@ -21,12 +21,12 @@ function OnTriggerEnter(other:Collider) {
 	}
 
 
-	if(other.tag =="health" && health < 6) {
+	if(other.tag =="healthPickup" && health < 6) {
 	health++;
 	Destroy(other.gameObject);
 	}
 	
-	if(other.tag=="health" && health==6){
+	if(other.tag=="healthPickup" && health==6){
 	Destroy(other.gameObject);
 	}
 
