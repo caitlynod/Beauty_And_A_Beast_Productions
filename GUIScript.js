@@ -8,8 +8,20 @@ var playerhealth = GameObject.FindGameObjectWithTag("player").GetComponent(playe
 if(playerhealth.health == 6){
 	GameObject.FindGameObjectWithTag("health").GetComponent(UI.RawImage).texture = Resources.Load("fullHealth", typeof(Texture)) as Texture;
 }
-if(playerhealth.health == playerhealth.health){
-GameObject.FindGameObjectWithTag("health").GetComponent(UI.RawImage).texture = Resources.Load("health"+playerhealth.health, typeof(Texture)) as Texture;
+if(playerhealth.health == 5){
+	GameObject.FindGameObjectWithTag("health").GetComponent(UI.RawImage).texture = Resources.Load("health"+playerhealth.health, typeof(Texture)) as Texture;
+}
+if(playerhealth.health == 4){
+	GameObject.FindGameObjectWithTag("health").GetComponent(UI.RawImage).texture = Resources.Load("health"+playerhealth.health, typeof(Texture)) as Texture;
+}
+if(playerhealth.health == 3){
+	GameObject.FindGameObjectWithTag("health").GetComponent(UI.RawImage).texture = Resources.Load("health"+playerhealth.health, typeof(Texture)) as Texture;
+}
+if(playerhealth.health == 2){
+	GameObject.FindGameObjectWithTag("health").GetComponent(UI.RawImage).texture = Resources.Load("health"+playerhealth.health, typeof(Texture)) as Texture;
+}
+if(playerhealth.health == 1){
+	GameObject.FindGameObjectWithTag("health").GetComponent(UI.RawImage).texture = Resources.Load("health"+playerhealth.health, typeof(Texture)) as Texture;
 }
 if(playerhealth.health == 0){
 	GameObject.FindGameObjectWithTag("health").GetComponent(UI.RawImage).texture = Resources.Load("nohealth", typeof(Texture)) as Texture;
