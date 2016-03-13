@@ -4,8 +4,8 @@ public var speed : float;
 public var jumpHeight : float;
 public var gravity : float;
 private var targetRotation : int;
-private var jumpCount: int = 0;
-private var doubleJump : boolean = false;
+public var jumpCount: int = 0;
+public var doubleJump : boolean = false;
 
 //Disable Gravity
 GetComponent.<Rigidbody>().useGravity = false;
@@ -33,16 +33,24 @@ if(isGrounded()){
 jumpCount = 0;
 }
 //handle jump
+
+if(!doubleJump){
 if(Input.GetButton("Jump")){
-if(isGrounded()){
-GetComponent.<Rigidbody>().velocity.y = jumpHeight;
-jumpCount++;
-doubleJump = false;
-}else if(jumpCount < 3 && !isGrounded()){
 doubleJump = true;
-GetComponent.<Rigidbody>().velocity.y = jumpHeight +2;
+GetComponent.<Rigidbody>().velocity.y = jumpHeight;
+Debug.Log(doubleJump);
 }
-	
+
+}
+if(doubleJump && Input.GetButton("Jump")){
+if(isGrounded()){
+doubleJump = false;
+}
+
+GetComponent.<Rigidbody>().velocity.y = jumpHeight*5;
+
+Debug.Log(doubleJump);
+
 }
 }
 //run a check to see if player is on ground
