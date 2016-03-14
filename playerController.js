@@ -33,29 +33,29 @@ if(isGrounded()){
 jumpCount = 0;
 }
 //handle jump
-
-if(!doubleJump){
-if(Input.GetButton("Jump")){
-doubleJump = true;
-GetComponent.<Rigidbody>().velocity.y = jumpHeight;
-Debug.Log(doubleJump);
-}
-
-}
-if(doubleJump && Input.GetButton("Jump")){
 if(isGrounded()){
 doubleJump = false;
 }
 
-GetComponent.<Rigidbody>().velocity.y = jumpHeight*5;
+//handle jump
+	if(Input.GetButton("Jump") && !doubleJump && isGrounded()){
 
-Debug.Log(doubleJump);
+	GetComponent.<Rigidbody>().velocity.y = jumpHeight;
+		doubleJump = true;
+		Debug.Log(doubleJump);
+	}
+	
+	if(Input.GetButton("Jump") && doubleJump && !isGrounded()){
 
-}
+	GetComponent.<Rigidbody>().velocity.y = jumpHeight*4;
+	
+	doubleJump = false;	
+		Debug.Log(doubleJump);
+	}
+	
 }
 //run a check to see if player is on ground
 function isGrounded(){
-
 var front : Vector3 = transform.position;
 front.x += 0.4;
 var middle : Vector3 = transform.position;
@@ -64,7 +64,9 @@ back.x -= 0.4;
 
 //debug raycast 
 var jumpLine : float = GetComponent.<Collider>().bounds.size.y/2 + 0.2;
-
+Debug.DrawRay(middle, Vector3(0,-jumpLine, 0), Color.red);
+Debug.DrawRay(front, Vector3(0,-jumpLine, 0), Color.red);
+Debug.DrawRay(back, Vector3(0,-jumpLine, 0), Color.red);
 
 if(Physics.Raycast(front, Vector3.down, jumpLine) || Physics.Raycast(middle, Vector3.down, jumpLine) || Physics.Raycast(back, Vector3.down, jumpLine)){
 return true;

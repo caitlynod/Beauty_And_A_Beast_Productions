@@ -19,6 +19,11 @@ function OnTriggerEnter(other:Collider) {
 		score++;
 		Destroy(other.gameObject);
 	}
+	
+	if(other.tag == "killEnemy"){
+	Destroy(other.gameObject);
+	Destroy(GameObject.FindGameObjectWithTag("enemy"));
+	}
 
 
 	if(other.tag =="healthPickup" && health < 6) {
@@ -29,5 +34,10 @@ function OnTriggerEnter(other:Collider) {
 	if(other.tag=="healthPickup" && health==6){
 	Destroy(other.gameObject);
 	}
+	
+	if (other.gameObject.tag == "damage"){
+          health -= 1; 
+          //Debug.Log(health);       
+      }
 
 }
