@@ -5,7 +5,7 @@ public var jumpHeight : float;
 public var gravity : float;
 private var targetRotation : int;
 public var jumpCount: int = 0;
-public var doubleJump : boolean = false;
+public var jumpDelay : boolean;
 
 //Disable Gravity
 GetComponent.<Rigidbody>().useGravity = false;
@@ -29,31 +29,22 @@ if(GetComponent.<Rigidbody>().velocity.x < 0){
 		targetRotation  = 0; //set char to right
 	}
 	transform.eulerAngles.y -= (transform.eulerAngles.y-targetRotation)/5;
-if(isGrounded()){
-jumpCount = 0;
-}
-//handle jump
-if(isGrounded()){
-doubleJump = false;
-}
 
 //handle jump
-	if(Input.GetButton("Jump") && !doubleJump && isGrounded()){
-
-	GetComponent.<Rigidbody>().velocity.y = jumpHeight;
-		doubleJump = true;
-		Debug.Log(doubleJump);
-	}
-	
-	if(Input.GetButton("Jump") && doubleJump && !isGrounded()){
-
-	GetComponent.<Rigidbody>().velocity.y = jumpHeight*4;
-	
-	doubleJump = false;	
-		Debug.Log(doubleJump);
-	}
 	
 }
+function Update(){
+if(Input.GetKeyDown(KeyCode.Space) && jumpDelay == false && isGrounded()){
+GetComponent.<Rigidbody>().velocity.y = jumpHeight;
+jumpDelay = true;
+}
+else if(Input.GetKeyDown(KeyCode.Space) && jumpDelay == true){
+GetComponent.<Rigidbody>().velocity.y = jumpHeight*3;
+jumpDelay = false;
+}
+}
+
+
 //run a check to see if player is on ground
 function isGrounded(){
 var front : Vector3 = transform.position;
