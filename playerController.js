@@ -34,11 +34,11 @@ if(GetComponent.<Rigidbody>().velocity.x < 0){
 	
 }
 function Update(){
-if(Input.GetKeyDown(KeyCode.Space) && jumpDelay == false && isGrounded()){
+if(Input.GetButton("Jump") && !jumpDelay && isGrounded()){
 GetComponent.<Rigidbody>().velocity.y = jumpHeight;
 jumpDelay = true;
 }
-else if(Input.GetKeyDown(KeyCode.Space) && jumpDelay == true){
+else if(Input.GetButtonDown("Jump") && jumpDelay){
 GetComponent.<Rigidbody>().velocity.y = jumpHeight*3;
 jumpDelay = false;
 }
@@ -55,9 +55,6 @@ back.x -= 0.4;
 
 //debug raycast 
 var jumpLine : float = GetComponent.<Collider>().bounds.size.y/2 + 0.2;
-Debug.DrawRay(middle, Vector3(0,-jumpLine, 0), Color.red);
-Debug.DrawRay(front, Vector3(0,-jumpLine, 0), Color.red);
-Debug.DrawRay(back, Vector3(0,-jumpLine, 0), Color.red);
 
 if(Physics.Raycast(front, Vector3.down, jumpLine) || Physics.Raycast(middle, Vector3.down, jumpLine) || Physics.Raycast(back, Vector3.down, jumpLine)){
 return true;
