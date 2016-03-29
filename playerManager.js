@@ -8,6 +8,12 @@ public var score: int = 0;
 var inventory = new Dictionary.<String,int>();
 inventory["power"] = 0;
 
+function Update(){
+if(health == 0){
+Application.LoadLevel("lose");
+}
+}
+
 function OnTriggerEnter(other:Collider) {
 	if(other.tag =="fruit") {
 		fruit++;
@@ -17,6 +23,10 @@ function OnTriggerEnter(other:Collider) {
 	if(other.tag =="utensil") {
 		utensil++;
 		score++;
+		Destroy(other.gameObject);
+	}
+	if(other.tag =="powerUp") {
+	Debug.Log(other.tag);
 		Destroy(other.gameObject);
 	}
 	
@@ -33,6 +43,10 @@ function OnTriggerEnter(other:Collider) {
 	
 	if(other.tag=="healthPickup" && health==6){
 	Destroy(other.gameObject);
+	}
+	
+	if(other.tag=="winGame"){
+	Application.LoadLevel("win");
 	}
 	
 	if (other.gameObject.tag == "damage"){
