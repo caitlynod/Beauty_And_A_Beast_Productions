@@ -2,11 +2,11 @@
 
 var SpawnPoint: Transform;
 
-var player : GameObject;
 
-function OnTriggerEnter(other: Collider)
-{
-	if(other.tag == "player")
+
+function OnTriggerEnter(other: Collider){
+var player = GameObject.FindGameObjectWithTag("player");
+	if(player)
 	{
 		player.transform.position = SpawnPoint.position;
 	
