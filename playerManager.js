@@ -12,6 +12,13 @@ function Update(){
 if(health == 0){
 Application.LoadLevel("lose");
 }
+var playerJump = GameObject.FindGameObjectWithTag("player").GetComponent(playerController);
+if(inventory["power"] == 1){
+if(transform.Find("Owl")){
+playerJump.jumpHeight = 10;
+}
+
+}
 }
 
 function OnTriggerEnter(other:Collider) {
@@ -26,7 +33,8 @@ function OnTriggerEnter(other:Collider) {
 		Destroy(other.gameObject);
 	}
 	if(other.tag =="powerUp") {
-	Debug.Log(other.tag);
+	Debug.Log(inventory["power"]);
+	inventory["power"] += 1;
 		Destroy(other.gameObject);
 	}
 	
@@ -49,9 +57,11 @@ function OnTriggerEnter(other:Collider) {
 	Application.LoadLevel("win");
 	}
 	
-	if (other.gameObject.tag == "damage"){
-          health -= 1; 
-          //Debug.Log(health);       
+
+	if (other.tag == "damage"){
+          health -= 1;      
       }
+
+	
 
 }
