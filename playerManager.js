@@ -17,7 +17,6 @@ Application.LoadLevel("lose");
 var playerJump = GameObject.FindGameObjectWithTag("player").GetComponent(playerController);
 if(inventory["power"] == 1){
 if(transform.Find("Owl")){
-
 playerJump.jumpHeight = 10;
 }
 
@@ -49,6 +48,7 @@ function OnTriggerEnter(other:Collider) {
 	if(other.tag == "killEnemy"){
 	Destroy(other.gameObject);
 	Destroy(GameObject.FindGameObjectWithTag("enemy"));
+	
 	}
 
 
@@ -68,7 +68,8 @@ function OnTriggerEnter(other:Collider) {
 	
 
 	if (other.tag == "damage"){
-          health -= 1;      
+          health -= 1;  
+          yield WaitForSeconds(30);    
       }
 
 	
