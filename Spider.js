@@ -19,8 +19,8 @@ function ApplyDamage (Damage : int)
 function Dead()
 {
 	Destroy (gameObject);
-	Instantiate(orange,transform.position, Quaternion.identity);
-	Instantiate(orange,transform.position, Quaternion.identity);
-	Instantiate(orange,transform.position, Quaternion.identity);
+	Instantiate(Orange,transform.position, Quaternion.identity);
+	Instantiate(Orange,transform.position, Quaternion.identity);
+	Instantiate(Orange,transform.position, Quaternion.identity);
 	
 }
