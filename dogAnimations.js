@@ -11,7 +11,7 @@ function Start() {
 function Update () {
 	if (Mathf.Abs(Input.GetAxis("Horizontal")) > 0.1){
 	anim.CrossFade("Walk Dog");
-	if(Input.GetButton("Fire1") && Mathf.Abs(Input.GetAxis("Horizontal")) > 0.1){
+	if(Input.GetButton("Shift") && Mathf.Abs(Input.GetAxis("Horizontal")) > 0.1){
 	anim.CrossFade("Run Dog");
 	}
 	}else if(Input.GetButton("Jump")){
@@ -22,5 +22,15 @@ function Update () {
 	if(!target.isGrounded()){
 	anim.CrossFade("Fall Dog");
 	}
+	
+	var playerInventory = GameObject.FindGameObjectWithTag("player").GetComponent(playerManager);
+if( playerInventory.inventory["power"] == 1){
+if(transform.Find("Dog")){
+if(Input.GetButton("Fire1") && Mathf.Abs(Input.GetAxis("Horizontal")) > 0.1){
+	anim.CrossFade("Rolling Dog");
+	}
+
+}
+}
 		
 }
