@@ -1,6 +1,6 @@
 ﻿#pragma strict
 import System.Collections.Generic;
-var health : int = 6;
+var health : float = 6;
 public var fruit:int = 0;
 public var utensil:int = 0;
 public var score: int = 0;

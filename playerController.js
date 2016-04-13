@@ -7,6 +7,7 @@ private var targetRotation : int;
 public var jumpCount: int = 0;
 public var jumpDelay : boolean;
 
+
 //Disable Gravity
 GetComponent.<Rigidbody>().useGravity = false;
 
@@ -16,11 +17,12 @@ transform.position.z = 0;
 //Apply New Gravity
 GetComponent.<Rigidbody>().AddForce(new Vector3(0, -gravity*GetComponent.<Rigidbody>().mass, 0));
 //Handle Horz Movement
-GetComponent.<Rigidbody>().velocity.x = speed * Input.GetAxis("Horizontal");
-if(Input.GetKey(KeyCode.LeftShift)){
+GetComponent.<Rigidbody>().velocity.x = speed * Input.GetAxisRaw("Horizontal");
+if(Input.GetButton("Shift")){
 GetComponent.<Rigidbody>().velocity.x = speed * Input.GetAxis("Horizontal")*2;
 
 }
+
 if(GetComponent.<Rigidbody>().velocity.x < 0){
 //if moving towards left
 		targetRotation = 180; //set char to left

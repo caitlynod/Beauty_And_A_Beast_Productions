@@ -10,6 +10,7 @@ function instructions(){
 
 function levelSelect(){
 	Application.LoadLevel("levelSelect");
+	PlayerPrefs.DeleteKey("score");
 }
 
 function exit(){
